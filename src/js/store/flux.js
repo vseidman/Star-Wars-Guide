@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			character:[],
 			demo: [
 				{
 					title: "FIRST",
@@ -12,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			deimian: ["uno", "dos"]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
