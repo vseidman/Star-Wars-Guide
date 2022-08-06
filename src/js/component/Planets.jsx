@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import starWarsLogo from "../../img/starwarslogo.png"
-const Character = ({ character }) => {
 
-    const {name, url} = character; 
+const Planets = ({ planetData }) => {
+  const { name, url } = planetData;
 
-    return (
-        <>
+  return (
+    <>
       <div className="col-12 col-md-4">
         <div className="card my-3">
-        <img src={starWarsLogo} className="card-img-top" />
+          <img src={starWarsLogo} className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
             <Link to={url} className="btn btn-secondary">
@@ -20,11 +20,11 @@ const Character = ({ character }) => {
         </div>
       </div>
     </>
-    );
+  );
 };
 
-Character.propTypes = {
-    character: PropTypes.object,
+Planets.propTypes = {
+  planetData: PropTypes.object,
 };
 
-export default Character;
+export default Planets;

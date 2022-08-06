@@ -11,6 +11,8 @@ import { Navbar } from "./component/navbar.js";
 import { Footer } from "./component/footer.js";
 import CharacterDetail from "./component/CharacterDetail.jsx";
 import Character from "./component/Character.jsx";
+import Planets from "./component/Planets.jsx";
+
 
 //create your first component
 const Layout = () => {
@@ -25,6 +27,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/planets" element={<Planets />} />
             <Route path="/character" element={<Character />} />
             <Route path="/single/:theid" element={<Single />} />
             <Route path= "/character/:character_id" element={<CharacterDetail/>} />

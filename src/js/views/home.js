@@ -12,10 +12,10 @@ export const Home = () => {
 	<>
       <div className="container">
         <div className="row">
-          {store.people && store.people.map((character) => {
+          {store.people && store.people.map((character,index) => {
             return (
               <Character
-                key={`character-${character._id}`}
+                key={index}
                 character={character}
               />
             );
