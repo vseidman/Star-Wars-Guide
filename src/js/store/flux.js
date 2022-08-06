@@ -1,45 +1,44 @@
+import { element } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			character:[],
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
-			deimian: ["uno", "dos"]
+			name: [],
+			gender: [],
+			homeworld: [],
+			films: [],
+			urlstarWars: "https://www.swapi.tech/api/",
+			endPoint: ["name", "gender", "homeworld", "films"],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			getCharacter: async () => {
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				let store = getStore();
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+				try {
+					store.endPoint.forEach(async (element) => {
+
+						let response = await fetch(`${store.urlstarWars}/${element}`)
+
+						let data = await response.json()
+
+						data.results.forEach(async (item) => {
+
+							let responseTwo = await fetch(`${store.urlstarWars}/${element}/${item.uid}`)
+
+							let results = await responseTwo.json()
+							setStore({
+								...store,
+								[element]: [...store[element], results.result]
+							})
+						});
+					})
+
+				} catch (error) {
+					console.log(error);
+				}
+
+			},
 		}
 	};
 };
