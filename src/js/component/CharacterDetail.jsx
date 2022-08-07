@@ -11,41 +11,67 @@ const CharacterDetail = () => {
     let params = useParams();;
 
 
-    const { character_id } = params;
+    const { nature, nature_id } = params;
     const [person, setPerson] = useState({});
 
-    const getDetail = async () => {
-        let result = store.character.find((item) => item.id == character_id);
-        setPerson(result)
-    };
+
+    // const getDetail = async () => {
+    //     let result = store.character.find((item) => item.id == character_id);
+    //     setPerson(result)
+    // };
 
     useEffect(() => {
-        if (store.character.length > 0) {
-            getDetail()
-        }
-    }, [store.character]);
+        actions.getDetails({ nature: nature, uid: nature_id })
+    }, [nature_id]);
 
     return (
         <>
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-7">
-                        <div className="card my-3">
-                            <img
-                                src={person.image}
-                                className="card-img-top"
-                                alt={person.name}
-                            />
-                            <div className="card-body">
-                                <h5 className="card-title">{person.name}</h5>
-                                <p className="card-text">{person.gender}</p>
-                                <p className="card-text">{person.homeworld}</p>
-                                <p className="card-text">{person.films}</p>
+            {nature == "people" ?
+                (<div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-12 col-md-7">
+                            <div className="card my-3">
+                                <img
+                                    src={person.image}
+                                    className="card-img-top"
+                                    alt={person.name}
+                                />
+                                <div className="card-body">
+                                    <h5 className="card-title">{store.details.properties?.name}</h5>
+                                    <ul>
+                                        <li><p className="card-text">Gender: {store.details.properties?.gender}</p></li>
+                                        <li><p className="card-text">Hair Color: {store.details.properties?.hair_color}</p></li>
+                                        <li><p className="card-text">Eye Color: {store.details.properties?.eye_color}</p></li>
+                                        <li><p className="card-text">Skin Color: {store.details.properties?.skin_color}</p></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>) :
+                (<div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-12 col-md-7">
+                            <div className="card my-3">
+                                <img
+                                    src={person.image}
+                                    className="card-img-top"
+                                    alt={person.name}
+                                />
+                                <div className="card-body">
+                                    <h5 className="card-title">{store.details.properties?.name}</h5>
+                                    <ul>
+                                        <li><p className="card-text">Climate: {store.details.properties?.climate}</p></li>
+                                        <li><p className="card-text">Terrain: {store.details.properties?.terrain}</p></li>
+                                        <li><p className="card-text">Gravity: {store.details.properties?.gravity}</p></li>
+                                        <li><p className="card-text">Diameter: {store.details.properties?.diameter}</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>)
+            }
         </>
     )
 }

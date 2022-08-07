@@ -9,7 +9,8 @@ const getState = ({ getStore, setStore }) => {
 			films: [],
 			planets: [],
 			urlstarWars: "https://www.swapi.tech/api",
-			endPoint: ["people", "planets"]
+			endPoint: ["people", "planets"],
+			details: {}
 		},
 		actions: {
 			getCharacters: async () => {
@@ -38,6 +39,22 @@ const getState = ({ getStore, setStore }) => {
 				} catch (error) {
 					console.log(error);
 				}
+
+			},
+			getDetails: async (dataDetails) => {
+				
+				let store = getStore();
+				console.log(dataDetails)
+				try{
+					let response = await fetch (`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
+					let data = await response.json();
+					if(response.ok){
+						setStore({...store, details:data.result})
+					}
+				}catch (error) {
+					console.log(error)
+				}
+				console.log(`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
 
 			}
 		},

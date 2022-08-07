@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import starWarsLogo from "../../img/starwarslogo.png"
 
 const Planets = ({ planetData }) => {
-  const { name, url } = planetData;
+  const { name, uid } = planetData;
 
   return (
     <>
@@ -13,7 +13,7 @@ const Planets = ({ planetData }) => {
           <img src={starWarsLogo} className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
-            <Link to={url} className="btn btn-secondary">
+            <Link to={`/planets/${uid}`} className="btn btn-secondary">
               More Info
             </Link>
           </div>
