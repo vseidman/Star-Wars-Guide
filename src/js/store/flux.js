@@ -10,7 +10,8 @@ const getState = ({ getStore, setStore }) => {
 			planets: [],
 			urlstarWars: "https://www.swapi.tech/api",
 			endPoint: ["people", "planets"],
-			details: {}
+			details: {},
+			liked: []
 		},
 		actions: {
 			getCharacters: async () => {
@@ -55,8 +56,19 @@ const getState = ({ getStore, setStore }) => {
 					console.log(error)
 				}
 				console.log(`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
-
-			}
+			},
+			setLike: (uid) => {
+				
+				let store = getStore(); 
+				setStore({...store, liked:[...store.liked, uid]})
+			},
+			removeLike: (uid) => {
+				let store = getStore();
+				let likedCopy = store.liked.slice() //Slice para copiar el array
+				let index = likedCopy.indexOf(uid)
+				if (index > -1)likedCopy.splice(index, 1);
+				setStore({...store, liked:likedCopy});
+			},
 		},
 	};
 };

@@ -11,33 +11,29 @@ export const Home = () => {
 
 	return (
 		<>
-			<div className="container">
-				<div className="card-padre">
-					<div className="card-sw">
-						<div className="container">
-							<div className="row"><h1 className="title-color">Characters</h1>
-								{store.people && store.people.map((character, index) => {
-									return (
-										<Character
-											key={index}
-											character={character}
-										/>
-									);
-								})}
-							</div>
-						</div>
-						<div className="container">
-							<div className="row"><h1 className="title-color">Planets</h1>
-								{store.planets && store.planets.map((planet, index) => {
-									return (
-										<Planets
-											key={index}
-											planetData={planet}
-										/>
-									);
-								})}
-							</div>
-						</div>
+			<div className="container-fluid">
+				<div className="container">
+					<div className="row"><h1 className="title-color">Characters</h1>
+						{store.people && store.people.map((character, index) => {
+							return (
+								<Character
+									key={index}
+									character={character}
+								/>
+							);
+						})}
+					</div>
+				</div>
+				<div className="container">
+					<div className="row"><h1 className="title-color">Planets</h1>
+						{store.planets && store.planets.map((planet, index) => {
+							return (
+								<Planets
+									key={index}
+									planetData={planet}
+								/>
+							);
+						})}
 					</div>
 				</div>
 			</div>

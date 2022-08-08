@@ -15,10 +15,6 @@ const CharacterDetail = () => {
     const [person, setPerson] = useState({});
 
 
-    // const getDetail = async () => {
-    //     let result = store.character.find((item) => item.id == character_id);
-    //     setPerson(result)
-    // };
 
     useEffect(() => {
         actions.getDetails({ nature: nature, uid: nature_id })
@@ -37,13 +33,14 @@ const CharacterDetail = () => {
                                     alt={person.name}
                                 />
                                 <div className="card-body">
-                                    <h5 className="card-title">{store.details.properties?.name}</h5>
+                                    <h3 className="card-title">{store.details.properties?.name}</h3>
                                     <ul>
                                         <li><p className="card-text">Gender: {store.details.properties?.gender}</p></li>
                                         <li><p className="card-text">Hair Color: {store.details.properties?.hair_color}</p></li>
                                         <li><p className="card-text">Eye Color: {store.details.properties?.eye_color}</p></li>
                                         <li><p className="card-text">Skin Color: {store.details.properties?.skin_color}</p></li>
                                     </ul>
+                                    <h6>Click Star Wars logo to go back</h6>
                                 </div>
                             </div>
                         </div>
@@ -59,13 +56,14 @@ const CharacterDetail = () => {
                                     alt={person.name}
                                 />
                                 <div className="card-body">
-                                    <h5 className="card-title">{store.details.properties?.name}</h5>
+                                    <h3 className="card-title">{store.details.properties?.name}</h3>
                                     <ul>
                                         <li><p className="card-text">Climate: {store.details.properties?.climate}</p></li>
                                         <li><p className="card-text">Terrain: {store.details.properties?.terrain}</p></li>
                                         <li><p className="card-text">Gravity: {store.details.properties?.gravity}</p></li>
                                         <li><p className="card-text">Diameter: {store.details.properties?.diameter}</p></li>
                                     </ul>
+                                    <h6>Click Star Wars logo to go back</h6>
                                 </div>
                             </div>
                         </div>

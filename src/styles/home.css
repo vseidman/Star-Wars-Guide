@@ -1,6 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     background-image: url(https://cdn.pixabay.com/photo/2016/01/27/15/25/space-1164579_1280.png);
 }
 .title-color{
     color: white;
+}
+.logo{
+    max-height: 150px;
+    margin-top: 10px;
+    margin-left: 860px;
+}
+.like{
+    margin-left: 240px;
+}
+.red{
+    background-color: red;
+}
+.fav{
+    padding: 10px;
+    width: 200px;
+    margin-left: 220px;
 }

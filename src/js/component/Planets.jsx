@@ -16,6 +16,7 @@ const Planets = ({ planetData }) => {
             <Link to={`/planets/${uid}`} className="btn btn-secondary">
               More Info
             </Link>
+            <button type="button" className="btn btn-secondary like"><i className="fas fa-heart"></i></button>
           </div>
         </div>
       </div>
