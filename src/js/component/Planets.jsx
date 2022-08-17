@@ -1,22 +1,33 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import starWarsLogo from "../../img/starwarslogo.png"
+import { Context } from "../store/appContext.js";
 
 const Planets = ({ planetData }) => {
-  const { name, uid } = planetData;
+
+  const { store, actions } = useContext(Context);
+  const { name, uid, created } = planetData;
+  const isLiked = store.liked.indexOf(planetData) > -1;
+  const handleLiked = isLiked ? actions.removeLike : actions.setLike;
+  const likedColor = isLiked ? "red" : ""
 
   return (
     <>
-      <div className="col-12 col-md-4">
+      <div className="">
         <div className="card my-3">
           <img src={starWarsLogo} className="card-img-top" />
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
+            <div className="card-footer">
             <Link to={`/planets/${uid}`} className="btn btn-secondary">
               More Info
             </Link>
-            <button type="button" className="btn btn-secondary like"><i className="fas fa-heart"></i></button>
+            <button type="button"
+              className={`btn btn-secondary like ${likedColor}`}
+              onClick={() => { actions.addFavoritos(created)}}>
+              <i className="fas fa-heart"></i></button>
+            </div>
           </div>
         </div>
       </div>

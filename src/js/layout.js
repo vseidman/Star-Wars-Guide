@@ -26,7 +26,7 @@ const Layout = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:nature/:nature_id" element={<CharacterDetail />} />
-            <Route path="*" element={<h1>Not found 404</h1>} />
+            <Route path="*" element={<h1><span className="Not">Not found 404</span></h1>} />
           </Routes>
           <Footer />
         </ScrollToTop>

@@ -3,15 +3,12 @@ import { element } from "prop-types";
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			name: [],
-			gender: [],
-			homeworld: [],
-			films: [],
 			planets: [],
-			urlstarWars: "https://www.swapi.tech/api",
+			urlstarWars: "https://swapi.dev/api",
 			endPoint: ["people", "planets"],
 			details: {},
-			liked: []
+			liked: [],
+			favoritos: []
 		},
 		actions: {
 			getCharacters: async () => {
@@ -43,32 +40,56 @@ const getState = ({ getStore, setStore }) => {
 
 			},
 			getDetails: async (dataDetails) => {
-				
+
 				let store = getStore();
 				console.log(dataDetails)
-				try{
-					let response = await fetch (`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
+				try {
+					let response = await fetch(`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
 					let data = await response.json();
-					if(response.ok){
-						setStore({...store, details:data.result})
+					if (response.ok) {
+						setStore({ ...store, details: data.result })
 					}
-				}catch (error) {
+				} catch (error) {
 					console.log(error)
 				}
 				console.log(`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
 			},
 			setLike: (uid) => {
-				
-				let store = getStore(); 
-				setStore({...store, liked:[...store.liked, uid]})
+
+				let store = getStore();
+				setStore({ ...store, liked: [...store.liked, uid] })
 			},
 			removeLike: (uid) => {
 				let store = getStore();
 				let likedCopy = store.liked.slice() //Slice para copiar el array
 				let index = likedCopy.indexOf(uid)
-				if (index > -1)likedCopy.splice(index, 1);
-				setStore({...store, liked:likedCopy});
+				if (index > -1) likedCopy.splice(index, 1);
+				setStore({ ...store, liked: likedCopy });
 			},
+			addFavoritos: (favoritos) => {
+				console.log("Me ejecuto", favoritos)
+				let store = getStore();
+				let exist = store.favoritos.find((item) => item.created == favoritos)
+				if (!exist) {
+					for (let endPoint of store.endPoint) {
+						for (let item of store[endPoint]) {
+							if (item.created == favoritos) {
+								setStore({
+									...store,
+									favoritos: [...store.favoritos, item]
+								})
+							}
+						}
+					}
+				} else {
+					let newFavorite = store.favoritos.filter((item) => favoritos != item.created)
+					setStore({
+						...store,
+						favoritos: newFavorite
+					})
+				}
+
+			}
 		},
 	};
 };

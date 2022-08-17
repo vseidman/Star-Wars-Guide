@@ -25,3 +25,21 @@ body{
     width: 200px;
     margin-left: 220px;
 }
+.card-container{
+    display: flex;
+    overflow-x: scroll;
+    gap: 10px;
+}
+.Not{
+    color: white;
+}
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: none;
+}
+.card-footer a{
+    width: 100px;
+}
