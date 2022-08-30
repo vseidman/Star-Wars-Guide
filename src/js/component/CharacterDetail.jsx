@@ -11,14 +11,14 @@ const CharacterDetail = () => {
     let params = useParams();;
 
 
-    const { nature, nature_id } = params;
+    const { created } = params;
     const [person, setPerson] = useState({});
 
 
 
     useEffect(() => {
-        actions.getDetails({ nature: nature, uid: nature_id })
-    }, [nature_id]);
+        actions.getDetails({ created })
+    }, [created]);
 
     return (
         <>

@@ -6,8 +6,8 @@ import { Context } from "../store/appContext.js";
 const Character = ({ character }) => {
 
   const { store, actions } = useContext(Context);
-  const { name, uid, created } = character;
-  const isLiked = store.liked.indexOf(uid) > -1;
+  const { name, created } = character;
+  const isLiked = store.liked.indexOf(created) > -1;
   const handleLike = isLiked ? actions.removeLike : actions.setLike;
   const likeColor = isLiked ? "red" : ""
 
@@ -21,7 +21,7 @@ const Character = ({ character }) => {
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
             <div className="card-footer">
-            <Link to={`/people/${uid}`} className="btn btn-secondary">
+            <Link to={`/people/${created}`} className="btn btn-secondary">
               More Info
             </Link>
             <button type="button"

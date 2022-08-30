@@ -44,7 +44,7 @@ const getState = ({ getStore, setStore }) => {
 				let store = getStore();
 				console.log(dataDetails)
 				try {
-					let response = await fetch(`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
+					let response = await fetch(`${store.urlstarWars}/${dataDetails.created}/${dataDetails.created}`)
 					let data = await response.json();
 					if (response.ok) {
 						setStore({ ...store, details: data.result })
@@ -52,22 +52,21 @@ const getState = ({ getStore, setStore }) => {
 				} catch (error) {
 					console.log(error)
 				}
-				console.log(`${store.urlstarWars}/${dataDetails.nature}/${dataDetails.uid}`)
+				console.log(`${store.urlstarWars}/${dataDetails.created}/${dataDetails.created}`)
 			},
-			setLike: (uid) => {
+			setLike: (created) => {
 
 				let store = getStore();
-				setStore({ ...store, liked: [...store.liked, uid] })
+				setStore({ ...store, liked: [...store.liked, created] })
 			},
-			removeLike: (uid) => {
+			removeLike: (created) => {
 				let store = getStore();
 				let likedCopy = store.liked.slice() //Slice para copiar el array
-				let index = likedCopy.indexOf(uid)
+				let index = likedCopy.indexOf(created)
 				if (index > -1) likedCopy.splice(index, 1);
 				setStore({ ...store, liked: likedCopy });
 			},
 			addFavoritos: (favoritos) => {
-				console.log("Me ejecuto", favoritos)
 				let store = getStore();
 				let exist = store.favoritos.find((item) => item.created == favoritos)
 				if (!exist) {

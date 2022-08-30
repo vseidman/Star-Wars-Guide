@@ -7,7 +7,7 @@ import { Context } from "../store/appContext.js";
 const Planets = ({ planetData }) => {
 
   const { store, actions } = useContext(Context);
-  const { name, uid, created } = planetData;
+  const { name, created } = planetData;
   const isLiked = store.liked.indexOf(planetData) > -1;
   const handleLiked = isLiked ? actions.removeLike : actions.setLike;
   const likedColor = isLiked ? "red" : ""
@@ -20,7 +20,7 @@ const Planets = ({ planetData }) => {
           <div className="card-body">
             <h5 className="card-title">{name}</h5>
             <div className="card-footer">
-            <Link to={`/planets/${uid}`} className="btn btn-secondary">
+            <Link to={`/planets/${created}`} className="btn btn-secondary">
               More Info
             </Link>
             <button type="button"
