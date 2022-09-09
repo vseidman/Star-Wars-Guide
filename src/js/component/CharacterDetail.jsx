@@ -11,14 +11,16 @@ const CharacterDetail = () => {
     let params = useParams();;
 
 
-    const { created } = params;
+    const { nature_id, nature } = params;
     const [person, setPerson] = useState({});
+    
 
 
 
     useEffect(() => {
-        actions.getDetails({ created })
-    }, [created]);
+        let current = actions.getDetails(nature_id, nature)
+        setPerson(current)
+    }, [nature_id, nature]);
 
     return (
         <>
@@ -33,12 +35,12 @@ const CharacterDetail = () => {
                                     alt={person.name}
                                 />
                                 <div className="card-body">
-                                    <h3 className="card-title">{store.details.properties?.name}</h3>
+                                    <h3 className="card-title">{person.name}</h3>
                                     <ul>
-                                        <li><p className="card-text">Gender: {store.details.properties?.gender}</p></li>
-                                        <li><p className="card-text">Hair Color: {store.details.properties?.hair_color}</p></li>
-                                        <li><p className="card-text">Eye Color: {store.details.properties?.eye_color}</p></li>
-                                        <li><p className="card-text">Skin Color: {store.details.properties?.skin_color}</p></li>
+                                        <li><p className="card-text">Gender: {person.gender}</p></li>
+                                        <li><p className="card-text">Hair Color: {person.hair_color}</p></li>
+                                        <li><p className="card-text">Eye Color: {person.eye_color}</p></li>
+                                        <li><p className="card-text">Skin Color: {person.skin_color}</p></li>
                                     </ul>
                                     <h6>Click Star Wars logo to go back</h6>
                                 </div>
@@ -56,12 +58,12 @@ const CharacterDetail = () => {
                                     alt={person.name}
                                 />
                                 <div className="card-body">
-                                    <h3 className="card-title">{store.details.properties?.name}</h3>
+                                    <h3 className="card-title">{person.name}</h3>
                                     <ul>
-                                        <li><p className="card-text">Climate: {store.details.properties?.climate}</p></li>
-                                        <li><p className="card-text">Terrain: {store.details.properties?.terrain}</p></li>
-                                        <li><p className="card-text">Gravity: {store.details.properties?.gravity}</p></li>
-                                        <li><p className="card-text">Diameter: {store.details.properties?.diameter}</p></li>
+                                        <li><p className="card-text">Climate: {person.climate}</p></li>
+                                        <li><p className="card-text">Terrain: {person.terrain}</p></li>
+                                        <li><p className="card-text">Gravity: {person.gravity}</p></li>
+                                        <li><p className="card-text">Diameter: {person.diameter}</p></li>
                                     </ul>
                                     <h6>Click Star Wars logo to go back</h6>
                                 </div>

@@ -39,20 +39,24 @@ const getState = ({ getStore, setStore }) => {
 				}
 
 			},
-			getDetails: async (dataDetails) => {
+			getDetails: (dataDetails, nature) => {
 
 				let store = getStore();
-				console.log(dataDetails)
 				try {
-					let response = await fetch(`${store.urlstarWars}/${dataDetails.created}/${dataDetails.created}`)
-					let data = await response.json();
-					if (response.ok) {
-						setStore({ ...store, details: data.result })
-					}
+					if(nature === "planets"){
+						let currentPlanet = store.planets.find((item) => item.created == dataDetails)
+						return currentPlanet 
+					}else if(nature === "people"){
+						let current = store.people.find((item) => item.created == dataDetails)
+						return current
+					}else(
+						console.log("No lo encontre")
+					)
+					console.log(current)
 				} catch (error) {
 					console.log(error)
 				}
-				console.log(`${store.urlstarWars}/${dataDetails.created}/${dataDetails.created}`)
+				
 			},
 			setLike: (created) => {
 
